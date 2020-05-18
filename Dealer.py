@@ -10,14 +10,16 @@ class Dealer:
 
     def addCard(self, card):
         self.hand.append(card)
-        self.score += card.getValue(self.score)
-        return self.checkLose()
+        self.score += card.value
+        self.checkLose()
 
     def turn(self):
         if self.score <= 16:
-            return "Hit"
+            self.playing = True
+            return True
         else:  
-            return "Stand"
+            self.playing = False
+            return False
 
     def checkLose(self):
         if self.score > 21:

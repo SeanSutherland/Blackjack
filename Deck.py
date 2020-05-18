@@ -42,17 +42,10 @@ class Card():
         if self.name == "Ten" or self.name == "Jack" or self.name == "Queen" or self.name == "King":
             self.value = int(10)
         elif self.name == "Ace":
-            self.value == None
+            self.value = 11
         else:
             self.value = int(values.index(self.name) + 2)
-        
-    def getValue(self, score):
-        if self.name == "Ace":
-            if score <= 10: 
-                self.value = 11
-            else:
-                self.value = 1
-        return self.value
+    
 
     
 
