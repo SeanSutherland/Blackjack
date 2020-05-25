@@ -1,10 +1,7 @@
 from Hand import Hand
+from Player import Player
 
-class BasicStrategyPlayer:
-    hand = []
-    cash = 0
-    bet = 0
-    playing = True
+class BasicStrategyPlayer(Player):
 
     aceDecision = [
         ["Hit", "Hit", "Hit", "Double", "Double", "Hit", "Hit", "Hit", "Hit", "Hit"], #2
@@ -52,18 +49,6 @@ class BasicStrategyPlayer:
         [False, False, False, False, False, False, False, False, False, False], #10
         [True, True, True, True, True, True, True, True, True, True] #11
     ]
-
-    def __init__(self, startingCash):
-        self.cash = startingCash
-
-    def newHand(self):
-        self.bet = 10
-        self.hand = [Hand(self.bet)]
-
-    def split(self, hand):
-        self.hand.append(Hand(self.bet))
-        index = self.hand.index(hand)
-        self.hand[-1].addCard(self.hand[index].pop())
 
     def turn(self, hand, upcard):
         ace = False

@@ -1,3 +1,5 @@
+from Deck import Card
+
 class Hand(list):
     score = 0
     bet = 0
@@ -5,8 +7,8 @@ class Hand(list):
     win = False
     tie = False
 
-    def __init__(self, bet):
-        super()
+    def __init__(self, bet = 0):
+        super(Card)
         self.score = 0
         self.bet = bet
         self.playing = True
@@ -41,6 +43,7 @@ class Hand(list):
         if self.score > 21:
             for card in self:
                 if card.name == "Ace" and card.value == 11:
+                    #print("Converted")
                     card.value = 1
                     self.score -= 10
                     self.playing = True
@@ -50,3 +53,9 @@ class Hand(list):
         else:
             self.playing = True
             return True
+
+    def copy(self):
+        returner = Hand()
+        for card in self:
+            returner.addCard(card)
+        return returner

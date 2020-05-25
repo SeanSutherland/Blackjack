@@ -1,35 +1,14 @@
-class Dealer:
-    hand = []
-    score = 0
-    playing = True
+from Player import Player
 
-    def newHand(self):
-        self.score = 0
-        self.hand = []
-        self.playing = True
+class Dealer(Player):
 
-    def addCard(self, card):
-        self.hand.append(card)
-        self.score += card.value
-        self.checkLose()
-
-    def turn(self):
-        if self.score <= 16:
-            self.playing = True
-            return True
+    def turn(self, hand = [], upcard = []):
+        hand = self.hand[0]
+        if hand.score <= 16:
+            return "Hit"
         else:  
-            self.playing = False
-            return False
+            hand.playing = False
+            return "Stand"
 
-    def checkLose(self):
-        if self.score > 21:
-            for card in self.hand:
-                if card.name == "Ace" and card.value == 11:
-                    card.value = 1
-                    self.playing = True
-                    return True
-            self.playing = False
-            return False
-        else:
-            self.playing = True
-            return True
+    def isDealer(self):
+        return True
